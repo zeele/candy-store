@@ -9,7 +9,7 @@ Unzip folder and navigate to the directory.
 
 In your terminal, generate your IntelliJ project files:
 ```
-gradlew clean
+./gradlew clean
 ```
 After opening IntelliJ, you click on the refresh button on the Gradle tab.
 
@@ -30,9 +30,9 @@ If you have issues with set up, try these:
 ### Running application
 Run main method in ChocolateShopController (Ctrl-Shift-F10 if using Intellij) 
 
-The input.csv file has been added in the src/main/java/resources directory
+The ```input.csv``` file has been added in the src/main/java/resources directory
 
-The output.csv file that is produced should appear under the /out directory.
+The ```output.csv``` file that is produced should appear under the /out directory.
 
 
 ### Running tests
@@ -54,7 +54,7 @@ I called the Chocolate type (milk, dark..) as **ChocolateFlavorType** to avoid c
 #### Loose coupling
 I tried to apply this concept. E.g. if the promotion rules change, just the map of the actual chocolate flavor to counts would need to change and nothing else.  
 
-Things **could be more generic** but I decided not to as it would be over engineering the current problem. 
+Things **could be more generic**. 
 
 #### State and behavior
 **Shopper** is designed as such as I feel a **Shopper should know their order**, and **the number of Chocolates and Wrappers** they have. 
@@ -66,10 +66,9 @@ I tried to use **unilateral assocations** where I could. But there are some case
  
 The **Add Chocolate Product Command** knows about the Shopper and needs to change the shopper state - the action of changing the state is delegated back to the shopper.
 
-
-##### Use of command pattern for adding chocolate
+#### Use of command pattern for adding chocolate
 Instead of a switch statement or if else to distinguish between types of chocolate and to incrementing the number, I decided to use the command pattern. The downside to that is more components and files.
 
 
-##### Use of Lombok
-I included the use of [Lombok](https://www.baeldung.com/intro-to-project-lombok)as I feel it makes the code more concise and easier to understand.
+#### Use of Lombok
+I included the use of [Lombok](https://www.baeldung.com/intro-to-project-lombok) as I feel it makes the code more concise and easier to understand.
