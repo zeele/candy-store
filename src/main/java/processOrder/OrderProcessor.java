@@ -44,16 +44,16 @@ public class OrderProcessor {
      * chocolate count and their chocolate wrapper counts. This does
      * not update the cash amount from the order as orders are
      * immutable and we do not need to reference the cash amount
-     * after this.
+     * after this. Package private for testing
      *
      * @param shopper
      * @return whether the shopper was able to buy chocolates
      */
-    private static boolean buyChocolates(Shopper shopper) {
+    static boolean buyChocolates(Shopper shopper) {
         Order order = shopper.getOrder();
         ChocolateFlavorType chocolateType = order.getChocolateFlavorType();
 
-        if (order.getCash() > 0) {
+        if (order.getCash() > 0 && order.getCash() >= order.getPrice()) {
             int numOfChocolatesThatCanBeBought = order.getCash() / order.getPrice();
             shopper.addToChocolateProducts(chocolateType, numOfChocolatesThatCanBeBought);
             return true;
@@ -67,13 +67,13 @@ public class OrderProcessor {
      * @param shopper
      * @return whether the shopper was able to trade in wrappers for complimentary chocolates
      */
-    private static boolean tradeWrappersForChocolate(Shopper shopper) {
+    static boolean tradeWrappersForChocolate(Shopper shopper) {
         int wrappersNeeded = shopper.getOrder().getWrappersNeeded();
         Map<ChocolateFlavorType, Integer> chocololateWrappersCountByType =
-                ChocolateProduct.getCountByFlavor(
+                Shopper.getCountByFlavor(
                         shopper.getWrappers());
 
-        ChocolateFlavorType chocolateFlavorType = getCandyTypeThatHasAvailableWrappersForTrading(
+        ChocolateFlavorType chocolateFlavorType = getTypeWithAvailableWrappersTestCases(
                 chocololateWrappersCountByType, wrappersNeeded);
 
         if (chocolateFlavorType != null) {
@@ -93,14 +93,14 @@ public class OrderProcessor {
      * shopper is 2, shopper has 2 milk chocolate wrappers, this will give us ChocolateFlavorType
      * as Milk. If we can't find any type of wrappers that we have enough of, return null.
      *
-     * @param countByType
+     * @param chocolateProductTypeToAmount the type of chocolate to the count
      * @param wrappersNeeded
      * @return the type of chocolate product (e.g. Milk, Dark, White..) or null
      */
-    private static ChocolateFlavorType getCandyTypeThatHasAvailableWrappersForTrading(
-            Map<ChocolateFlavorType, Integer> countByType, int wrappersNeeded) {
+    static ChocolateFlavorType getTypeWithAvailableWrappersTestCases(
+            Map<ChocolateFlavorType, Integer> chocolateProductTypeToAmount, int wrappersNeeded) {
 
-        return countByType.entrySet().stream()
+        return chocolateProductTypeToAmount.entrySet().stream()
                 .filter(e -> e.getValue() >= wrappersNeeded)
                 .map(Map.Entry::getKey)
                 .findFirst()
@@ -110,11 +110,11 @@ public class OrderProcessor {
     /**
      * For each Chocolate Type (Milk, Dark..), we add the amount to the shopper's chocolate products
      *
-     * @param candyTypeToAmount This is the promotion rule - a map of the of chocolate type to amount of
+     * @param promotionRules This is the promotion rule - a map of the of chocolate type to amount of
      *                             complimentary chocolates.
      * @param shopper
      */
-    private static void addComplimentaryChocolateProducts(Map<ChocolateFlavorType, Integer> candyTypeToAmount, Shopper shopper) {
-        candyTypeToAmount.forEach(shopper::addToChocolateProducts);
+    static void addComplimentaryChocolateProducts(Map<ChocolateFlavorType, Integer> promotionRules, Shopper shopper) {
+        promotionRules.forEach(shopper::addToChocolateProducts);
     }
 }

@@ -16,7 +16,7 @@ public enum ChocolateFlavorType {
             Map<ChocolateFlavorType, Integer> complimentaryChocolateProduct = Maps.newHashMap();
             complimentaryChocolateProduct.put(ChocolateFlavorType.MILK, 1);
             complimentaryChocolateProduct.put(ChocolateFlavorType.SUGAR_FREE, 1);
-            return complimentaryChocolateProduct;
+            return ImmutableMap.copyOf(complimentaryChocolateProduct);
         }
     },
     DARK("dark") {
@@ -24,7 +24,7 @@ public enum ChocolateFlavorType {
         public Map<ChocolateFlavorType, Integer> getPromotionRules() {
             Map<ChocolateFlavorType, Integer> complimentaryChocolateProduct = Maps.newHashMap();
             complimentaryChocolateProduct.put(ChocolateFlavorType.DARK, 1);
-            return complimentaryChocolateProduct;
+            return ImmutableMap.copyOf(complimentaryChocolateProduct);
         }
     },
     WHITE("white") {
@@ -33,7 +33,7 @@ public enum ChocolateFlavorType {
             Map<ChocolateFlavorType, Integer> complimentaryChocolateProduct = Maps.newHashMap();
             complimentaryChocolateProduct.put(ChocolateFlavorType.WHITE, 1);
             complimentaryChocolateProduct.put(ChocolateFlavorType.SUGAR_FREE, 1);
-            return complimentaryChocolateProduct;
+            return ImmutableMap.copyOf(complimentaryChocolateProduct);
         }
     },
     SUGAR_FREE("sugar free") {
@@ -42,7 +42,7 @@ public enum ChocolateFlavorType {
             Map<ChocolateFlavorType, Integer> complimentaryChocolateProduct = Maps.newHashMap();
             complimentaryChocolateProduct.put(ChocolateFlavorType.SUGAR_FREE, 1);
             complimentaryChocolateProduct.put(ChocolateFlavorType.DARK, 1);
-            return complimentaryChocolateProduct;
+            return ImmutableMap.copyOf(complimentaryChocolateProduct);
         }
     };
 

@@ -20,7 +20,7 @@ public class ChocolateShopController {
 
         if (shoppers != null) {
             shoppers.forEach(OrderProcessor::processOrder);
-            CSVParser.createCSVFileWithOrders(shoppers);
+            CSVParser.createCSVFileWithOrders(shoppers, "out/output.csv");
         } else {
             logger.warning("Error processing orders from file, or file does not contain orders.");
         }

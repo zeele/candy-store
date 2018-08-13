@@ -104,13 +104,12 @@ public class CSVParser {
 
     /**
      * Creates a CSV file with order information.
-     * todo: Output file location is hardcoded, change in future.
      *
      * @param shoppers
      * @throws IOException
      */
-    public static void createCSVFileWithOrders(List<Shopper> shoppers) throws IOException {
-        FileWriter out = new FileWriter("out/output.parser");
+    public static void createCSVFileWithOrders(List<Shopper> shoppers, String outputFile) throws IOException {
+        FileWriter out = new FileWriter(outputFile);
         try (CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT)) {
             shoppers.forEach(shopper -> {
                 ChocolateProduct chocolates = shopper.getChocolates();
