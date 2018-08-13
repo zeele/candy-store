@@ -61,10 +61,14 @@ Things **could be more generic** but I decided not to as it would be over engine
 
 Noone is allowed to modify the state directly. The shopper's **state is encapsualted** and hidden. It **exposes methods to receive** data to modify it 's internal state.
 
+#### Relationships
+I tried to use **unilateral assocations** where I could. But there are some cases where it's **bidirectional**. E.g. The Shopper and the add chocolate commands. 
+ 
+The **Add Chocolate Product Command** knows about the Shopper and needs to change the shopper state - the action of changing the state is delegated back to the shopper.
+
 
 ##### Use of command pattern for adding chocolate
-
-##### Use of enum for chocolate flavor type
+Instead of a switch statement or if else to distinguish between types of chocolate and to incrementing the number, I decided to use the command pattern. The downside to that is more components and files.
 
 
 ##### Use of Lombok
