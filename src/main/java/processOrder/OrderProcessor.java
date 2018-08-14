@@ -73,7 +73,7 @@ public class OrderProcessor {
                 Shopper.getCountByFlavor(
                         shopper.getWrappers());
 
-        ChocolateFlavorType chocolateFlavorType = getTypeWithAvailableWrappersTestCases(
+        ChocolateFlavorType chocolateFlavorType = getTypeWithAvailableWrappers(
                 chocololateWrappersCountByType, wrappersNeeded);
 
         if (chocolateFlavorType != null) {
@@ -97,7 +97,7 @@ public class OrderProcessor {
      * @param wrappersNeeded
      * @return the type of chocolate product (e.g. Milk, Dark, White..) or null
      */
-    static ChocolateFlavorType getTypeWithAvailableWrappersTestCases(
+    static ChocolateFlavorType getTypeWithAvailableWrappers(
             Map<ChocolateFlavorType, Integer> chocolateProductTypeToAmount, int wrappersNeeded) {
 
         return chocolateProductTypeToAmount.entrySet().stream()
