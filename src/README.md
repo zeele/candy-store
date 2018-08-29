@@ -1,5 +1,4 @@
-# Chocolate Shop
-This is a solution for Stride Consulting company code test. 
+# Candy Shop
 
 ### Requirement
 * Java 8
